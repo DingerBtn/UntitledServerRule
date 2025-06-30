@@ -1,36 +1,41 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: 欢迎来到 Untitled Minecraft 服务器
+description: Untitled 服务器的官方文档站 - 规则、公告和游戏指南
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: 探索、建造、生存！加入我们的方块世界
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/background.webp
+
   actions:
-    - text: Example Guide
-      link: /guides/example/
-      icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
+    - text: 服务器规则
+      link: /规则详细版/0前言
+      icon: open-book
+      variant: primary
+    - text: 公示及教程
+      link: /公示及教程/前言/
+      icon: comment-alt
+      variant: primary
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, Icon } from '@astrojs/starlight/components';
 
-## Next steps
+## 🎮 开始你的冒险
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Card title="服务器规则" icon="open-book">
+    了解服务器行为规范与游戏守则，确保公平的游戏环境
+  </Card>
+  
+  <Card title="最新公告" icon="comment-alt">
+    查看服务器更新、活动通知和重要事项公示
+  </Card>
+  
+  <Card title="游戏教程" icon="heart">
+    从新手到大师的完整指南，包含独家技巧和玩法
+  </Card>
+  
+  <Card title="资源下载" icon="cloud-download">
+    获取客户端、材质包和必备工具
+  </Card>
 </CardGrid>

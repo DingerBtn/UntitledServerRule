@@ -1,0 +1,499 @@
+---
+// src/pages/404.astro
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr" data-theme="dark" data-has-hero>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Untitled 服务器文档站</title>
+    <link rel="shortcut icon" href="/logo_64_64.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sl-color-black: #1a1f2d;
+            --sl-color-white: #fff;
+            --sl-color-accent: #5d8c47;
+            --sl-color-accent-low: #3a5a2d;
+            --sl-color-gray-1: #f8f9fa;
+            --sl-color-gray-2: #e9ecef;
+            --sl-color-gray-3: #dee2e6;
+            --sl-color-gray-4: #ced4da;
+            --sl-color-gray-5: #adb5bd;
+            --sl-color-gray-6: #6c757d;
+            --sl-color-gray-7: #495057;
+            --sl-color-gray-8: #343a40;
+            --sl-color-gray-9: #212529;
+            --sl-color-hairline-light: rgba(0, 0, 0, 0.1);
+            --sl-color-hairline-dark: rgba(0, 0, 0, 0.25);
+            --sl-color-text-invert: var(--sl-color-white);
+            --sl-border-radius: 0.25rem;
+            --sl-content-width: 50rem;
+            --sl-transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--sl-color-black);
+            color: var(--sl-color-white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://i.imgur.com/0k8wDzL.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .minecraft-pixel {
+            font-family: 'Press Start 2P', cursive;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* 顶部导航栏 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(30, 35, 45, 0.9);
+            border-bottom: 3px solid var(--sl-color-accent);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--sl-color-accent);
+            border: 3px solid var(--sl-color-accent-low);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: #8bc34a;
+            border: 2px solid var(--sl-color-accent-low);
+        }
+        
+        .logo-text {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: #8bc34a;
+            text-shadow: 2px 2px 0 var(--sl-color-accent-low);
+        }
+
+        /* 主内容区 */
+        .content-panel {
+            padding: 2rem 1rem;
+        }
+
+        .sl-container {
+            max-width: var(--sl-content-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .error-content {
+            background: rgba(30, 35, 45, 0.85);
+            border: 4px solid var(--sl-color-accent);
+            border-radius: var(--sl-border-radius);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .error-code {
+            font-size: clamp(4rem, 20vw, 8rem);
+            color: #e74c3c;
+            margin: 0.5rem 0;
+            text-shadow: 4px 4px 0 #7a1c12;
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        .error-title {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: #f1c40f;
+            margin-bottom: 1.5rem;
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        .error-message {
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            max-width: 700px;
+            line-height: 1.7;
+            margin: 0 auto 2rem;
+            color: var(--sl-color-white);
+            padding: 0 1rem;
+        }
+
+        /* 苦力怕图片样式 */
+        .creeper-main {
+            width: clamp(120px, 30vw, 180px);
+            height: auto;
+            object-fit: contain;
+            margin: 1.5rem auto;
+            position: relative;
+            z-index: 2;
+            animation: pulse 3s ease-in-out infinite;
+            display: block;
+        }
+
+        /* 导航块 */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 900px;
+            margin: 1.5rem auto;
+        }
+        
+        .nav-block {
+            background: var(--sl-color-gray-9);
+            border: 3px solid var(--sl-color-gray-8);
+            border-radius: var(--sl-border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--sl-transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-block:hover {
+            transform: translateY(-10px);
+            border-color: var(--sl-color-accent);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-block::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--sl-color-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--sl-transition);
+        }
+        
+        .nav-block:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .block-icon {
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--sl-color-accent);
+        }
+        
+        .block-title {
+            font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+            margin-bottom: 0.8rem;
+            color: #f1c40f;
+        }
+        
+        .block-desc {
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            color: var(--sl-color-white);
+        }
+        
+        /* 返回按钮 */
+        .home-button {
+            display: inline-block;
+            padding: clamp(0.8rem, 3vw, 1rem) clamp(1.5rem, 5vw, 2.5rem);
+            background: var(--sl-color-accent);
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(0.7rem, 2.5vw, 1.1rem);
+            text-decoration: none;
+            border: none;
+            border-radius: var(--sl-border-radius);
+            cursor: pointer;
+            transition: var(--sl-transition);
+            margin-top: 1.5rem;
+            border: 3px solid var(--sl-color-accent-low);
+            box-shadow: 0 4px 0 var(--sl-color-accent-low);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .home-button:hover {
+            background: #6a9c3a;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 0 var(--sl-color-accent-low);
+        }
+        
+        .home-button:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 var(--sl-color-accent-low);
+        }
+        
+        /* 底部样式 */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+            background: rgba(30, 35, 45, 0.9);
+            border-top: 3px solid var(--sl-color-accent);
+        }
+        
+        .footer-text {
+            color: #95a5a6;
+            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+        }
+
+        /* 动画 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.8rem;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+            
+            .error-content {
+                padding: 1.5rem 0.8rem;
+            }
+            
+            .nav-grid {
+                gap: 1rem;
+            }
+            
+            .nav-block {
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .logo-text {
+                font-size: 0.9rem;
+            }
+            
+            .error-content {
+                margin: 1rem 0;
+                padding: 1rem 0.5rem;
+            }
+            
+            .error-message {
+                margin-bottom: 1.5rem;
+            }
+            
+            .nav-grid {
+                grid-template-columns: 1fr;
+                max-width: 350px;
+            }
+            
+            .footer {
+                padding: 1rem;
+            }
+        }
+
+        /* 文档站主题元素 */
+        .site-title {
+            font-weight: 700;
+            font-size: var(--sl-text-h3);
+            color: var(--sl-color-text);
+            text-decoration: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .site-title img {
+            height: 2rem;
+            width: 2rem;
+        }
+
+        .header {
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .title-wrapper {
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .social-icons {
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--sl-color-gray-2);
+            transition: var(--sl-transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--sl-color-accent);
+            transform: translateY(-2px);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon"></div>
+            <div class="logo-text minecraft-pixel">UNTITLED</div>
+        </div>
+        <div class="social-icons">
+            <a href="https://github.com/DingerBtn/UntitledServerRule" rel="me">
+                <span class="sr-only">GitHub</span>
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <div class="content-panel">
+        <div class="sl-container">
+            <div class="hero">
+                <div class="error-content">
+                    <div class="error-code">404</div>
+                    <h1 class="error-title">页面未找到</h1>
+                    
+                    <img src="/404.webp" alt="苦力怕" class="creeper-main">
+
+                    
+                    <p class="error-message">
+                        哎呀！看起来你挖掘到了一个不存在的区块。可能是链接有误，或者这个页面已经被移除。
+                        不用担心，你可以返回安全区域，或者使用下面的链接继续探索我们的文档站。
+                    </p>
+                    
+                    <div class="nav-grid">
+                        <div class="nav-block" onclick="location.href='/'">
+                            <div class="block-icon"><i class="fas fa-home"></i></div>
+                            <h3 class="block-title">返回首页</h3>
+                            <p class="block-desc">回到安全的庇护所，重新开始你的旅程</p>
+                        </div>
+                        
+                        <div class="nav-block" onclick="location.href='/规则详细版/0前言'">
+                            <div class="block-icon"><i class="fas fa-book"></i></div>
+                            <h3 class="block-title">服务器规则</h3>
+                            <p class="block-desc">了解服务器行为规范与游戏守则</p>
+                        </div>
+                        
+                        <div class="nav-block" onclick="location.href='/公示及教程/前言'">
+                            <div class="block-icon"><i class="fas fa-bullhorn"></i></div>
+                            <h3 class="block-title">公示及教程</h3>
+                            <p class="block-desc">查看最新公告和游戏指南</p>
+                        </div>
+                    </div>
+                    
+                    <a href="/" class="home-button minecraft-pixel">返回主基地</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p class="footer-text">© Untitled Minecraft 服务器文档站</p>
+    </footer>
+
+    <script>
+        // 苦力怕点击效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainCreeper = document.querySelector('.creeper-main');
+            if (mainCreeper) {
+                mainCreeper.addEventListener('click', function() {
+                    this.style.transition = 'all 0.3s ease';
+                    this.style.transform = 'scale(1.1) rotate(5deg)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 300);
+                });
+            }
+            
+            // 导航块点击效果
+            const navBlocks = document.querySelectorAll('.nav-block');
+            navBlocks.forEach(block => {
+                block.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-10px)';
+                    }, 100);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
